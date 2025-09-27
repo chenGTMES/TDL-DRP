@@ -1,8 +1,6 @@
-# Algorithm-Driven Deep Learning Framework for Parallel MRI Reconstruction (ADDL)
+# Algorithm-Driven Deep Learning Framework (ADDL)
 
-This repository provides the official implementation of **ADDL**, the Algorithm-Driven Deep Learning Framework for Parallel MRI Reconstruction, as proposed in our paper:
-
-> **Algorithm-Driven Deep Learning Framework for Parallel MRI Reconstruction**
+This repository provides the official implementation of **ADDL**.
 
 ## 🔧 Requirements
 
