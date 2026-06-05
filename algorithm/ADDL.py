@@ -3,19 +3,14 @@ from utils.FRSGM.condrefinenet_fourier import CondRefineNetDilated
 
 class TDL_DRP:
     def __init__(self,
-                 max_iter=100,
-                 training_data='ADDL',
-                 n_slice=50,
-                 level=2):
+                 max_iter=80):
 
         import main
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.T_mask, self.T_ksdata, self.T_ksfull = main.mask, main.ksdata, main.ksfull
         self.T_Ker, self.T_Ker_Tra, self.T_sensitivity = main.Ker, main.Ker_Tra, main.sensitivityLi
 
-        self.max_iter, self.level, self.save_path = max_iter, level, main.save_path
-        self.training_data = training_data
-        self.n_slice = n_slice
+        self.max_iter, self.save_path = max_iter, main.save_path
 
         self.scoreNet = CondRefineNetDilated(2, 2, 64).to(device)
         self.scoreNet.load_state_dict(torch.load(f'the path of checkpoint'))
@@ -32,7 +27,6 @@ class TDL_DRP:
         self.start_time = time.time() - main.t_kernel - main.t_lip
         self.A = lambda x: VidHaarDec3S(IFFT2_3D_N((1 - self.T_mask) * x), self.level)
         self.At = lambda x: (1 - self.T_mask) * FFT2_3D_N(VidHaarRec3S(x, self.level))
-
 
     def process(self):
         y = self.T_ksdata.clone()
