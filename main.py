@@ -1,7 +1,7 @@
 import csv
 
 from utils.utils import *
-from algorithm.ADDL import TDL_DRP
+from algorithm.TDLDRP import TDL_DRP
 
 
 ksfull, ksdata, mask, save_path, sensitivity, Ker, Ker_Tra, Lip_C = None, None, None, None, None, None, None, None
