@@ -1,7 +1,7 @@
 import csv
 
 from utils.utils import *
-from algorithm.ADDL import ADDL_V3
+from algorithm.ADDL import TDL_DRP
 
 
 ksfull, ksdata, mask, save_path, sensitivity, Ker, Ker_Tra, Lip_C = None, None, None, None, None, None, None, None
@@ -14,7 +14,7 @@ def main(filename, maskfilename):
     indexs = []
     save_root = load_data_and_mask(filename, maskfilename)
 
-    indexs.append(ADDL_V3(max_iter=100).process())
+    indexs.append(TDL_DRP(max_iter=80).process())
 
     torch.cuda.empty_cache()
 
@@ -24,8 +24,6 @@ def main(filename, maskfilename):
     print(df.to_string(index=False))
 
 if __name__ == "__main__":
-    
-
     filename = '05_t2_tse_tra_512_s33_3mm_29'
     maskfilename = 'mask_random_512_512_SR_30_AC_27'
     main(filename, maskfilename)
